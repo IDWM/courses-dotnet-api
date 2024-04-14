@@ -4,7 +4,9 @@ namespace courses_dotnet_api.Src.Interfaces;
 
 public interface IAccountRepository
 {
-    Task<bool> SaveChangesAsync();
+    Task<bool> AccountExistsByEmailAsync(string email);
     Task AddAccountAsync(RegisterDto registerDto);
     Task<AccountDto?> GetAccountAsync(string email);
+    Task<CredentialDto?> GetCredentialAsync(string email);
+    Task<bool> SaveChangesAsync();
 }
