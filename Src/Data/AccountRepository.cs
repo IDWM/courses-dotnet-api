@@ -21,6 +21,11 @@ public class AccountRepository : IAccountRepository
         _tokenService = tokenService;
     }
 
+    public async Task<bool> AccountExistsByEmailAsync(string email)
+    {
+        return await _dataContext.Users.AnyAsync(user => user.Email == email);
+    }
+
     public async Task AddAccountAsync(RegisterDto registerDto)
     {
         using var hmac = new HMACSHA512();
@@ -41,7 +46,7 @@ public class AccountRepository : IAccountRepository
     public async Task<AccountDto?> GetAccountAsync(string email)
     {
         User? user = await _dataContext
-            .Users.Where(student => student.Email == email)
+            .Users.Where(user => user.Email == email)
             .FirstOrDefaultAsync();
 
         if (user == null)
@@ -59,6 +64,15 @@ public class AccountRepository : IAccountRepository
             };
 
         return accountDto;
+    }
+
+    public async Task<CredentialDto?> GetCredentialAsync(string email)
+    {
+        User? user = await _dataContext
+            .Users.Where(user => user.Email == email)
+            .FirstOrDefaultAsync();
+        
+        return _mapper.Map<CredentialDto>(user);
     }
 
     public async Task<bool> SaveChangesAsync()
