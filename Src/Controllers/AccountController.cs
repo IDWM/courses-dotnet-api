@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+using System.Text;
 using courses_dotnet_api.Src.DTOs.Account;
 using courses_dotnet_api.Src.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +11,10 @@ public class AccountController : BaseApiController
     private readonly IUserRepository _userRepository;
     private readonly IAccountRepository _accountRepository;
 
-    public AccountController(IUserRepository userRepository, IAccountRepository accountRepository)
+    public AccountController(IAccountRepository accountRepository, IUserRepository userRepository)
     {
-        _userRepository = userRepository;
         _accountRepository = accountRepository;
+        _userRepository = userRepository;
     }
 
     [HttpPost("register")]
@@ -34,6 +36,30 @@ public class AccountController : BaseApiController
         }
 
         AccountDto? accountDto = await _accountRepository.GetAccountAsync(registerDto.Email);
+
+        return TypedResults.Ok(accountDto);
+    }
+
+    [HttpPost("login")]
+    public async Task<IResult> Login(LoginDto loginDto)
+    {
+        CredentialDto? credentialDto = await _accountRepository.GetCredentialAsync(loginDto.Email);
+
+        if (credentialDto is null)
+        {
+            return TypedResults.BadRequest("Credentials are invalid");
+        }
+
+        using var hmac = new HMACSHA512(credentialDto.PasswordSalt);
+
+        byte[] computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
+
+        if (!computedHash.SequenceEqual(credentialDto.PasswordHash))
+        {
+            return TypedResults.BadRequest("Credentials are invalid");
+        }
+
+        AccountDto? accountDto = await _accountRepository.GetAccountAsync(loginDto.Email);
 
         return TypedResults.Ok(accountDto);
     }
