@@ -18,7 +18,21 @@ public class Seeder()
         SeedStudents(dataContext);
     }
 
-    public static void SeedRoles(DataContext dataContext) { }
+    public static void SeedRoles(DataContext dataContext)
+    {
+        var rolesData = File.ReadAllText("Src/Data/Seed/roles.json");
+        
+        var roles =
+            JsonSerializer.Deserialize<List<Role>>(rolesData, _options)
+            ?? throw new Exception("Roles not found");
+
+        if (dataContext.Roles.Any()) return;
+        
+        dataContext.Roles.AddRange(roles);
+        
+        dataContext.SaveChanges();
+            
+    }
 
     public static void SeedTeacher(DataContext dataContext)
     {
