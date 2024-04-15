@@ -1,0 +1,72 @@
+[
+    {
+        "rut": "708627585",
+        "name": "juan perez",
+        "email": "juan.perez@alumnos.ucn.cl",
+        "password": "abcd1234",
+        "confirmpassword": "abcd1234"
+    },
+    {
+        "rut": "176294675",
+        "name": "ana martínez",
+        "email": "ana.martinez@alumnos.ucn.cl",
+        "password": "qwerty123",
+        "confirmpassword": "qwerty123"
+    },
+    {
+        "rut": "100593784",
+        "name": "pedro ramírez",
+        "email": "pedro.ramirez@alumnos.ucn.cl",
+        "password": "pass1234",
+        "confirmpassword": "pass1234"
+    },
+    {
+        "rut": "187032581",
+        "name": "maría gonzález",
+        "email": "maria.gonzalez@alumnos.ucn.cl",
+        "password": "p@ssw0rd",
+        "confirmpassword": "p@ssw0rd"
+    },
+    {
+        "rut": "124967538",
+        "name": "luisa sánchez",
+        "email": "luisa.sanchez@alumnos.ucn.cl",
+        "password": "securepass",
+        "confirmpassword": "securepass"
+    },
+    {
+        "rut": "156209847",
+        "name": "carlos lópez",
+        "email": "carlos.lopez@alumnos.ucn.cl",
+        "password": "password123",
+        "confirmpassword": "password123"
+    },
+    {
+        "rut": "138420956",
+        "name": "laura rodríguez",
+        "email": "laura.rodriguez@alumnos.ucn.cl",
+        "password": "letmein12",
+        "confirmpassword": "letmein12"
+    },
+    {
+        "rut": "193867452",
+        "name": "javier garcía",
+        "email": "javier.garcia@alumnos.ucn.cl",
+        "password": "changeme",
+        "confirmpassword": "changeme"
+    },
+    {
+        "rut": "167845239",
+        "name": "miguel fernández",
+        "email": "miguel.fernandez@alumnos.ucn.cl",
+        "password": "iloveyou",
+        "confirmpassword": "iloveyou"
+    },
+    {
+        "rut": "112538479",
+        "name": "rosa díaz",
+        "email": "rosa.diaz@alumnos.ucn.cl",
+        "password": "abc12345",
+        "confirmpassword": "abc12345"
+    }
+]
