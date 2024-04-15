@@ -8,4 +8,8 @@ public class User
     public required string Email { get; set; }
     public required byte[] PasswordHash { get; set; }
     public required byte[] PasswordSalt { get; set; }
+    public int RoleId { get; set; }
+    public required Role Role { get; set; }
+    public int? CourseId { get; set; }
+    public Course? Course { get; set; }
 }
