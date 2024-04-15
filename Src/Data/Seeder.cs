@@ -18,22 +18,7 @@ public class Seeder()
         SeedStudents(dataContext);
     }
 
-    public static void SeedRoles(DataContext dataContext)
-    {
-        string[] roles = ["teacher", "student"];
-
-        foreach (string roleName in roles)
-        {
-            if (dataContext.Roles.Any(role => role.Name == roleName))
-            {
-                continue;
-            }
-
-            dataContext.Roles.AddAsync(new Role { Name = roleName });
-        }
-
-        dataContext.SaveChanges();
-    }
+    public static void SeedRoles(DataContext dataContext) { }
 
     public static void SeedTeacher(DataContext dataContext)
     {
