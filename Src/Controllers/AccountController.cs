@@ -6,16 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace courses_dotnet_api.Src.Controllers;
 
-public class AccountController : BaseApiController
+public class AccountController(IAccountRepository accountRepository, IUserRepository userRepository)
+    : BaseApiController
 {
-    private readonly IUserRepository _userRepository;
-    private readonly IAccountRepository _accountRepository;
-
-    public AccountController(IAccountRepository accountRepository, IUserRepository userRepository)
-    {
-        _accountRepository = accountRepository;
-        _userRepository = userRepository;
-    }
+    private readonly IUserRepository _userRepository = userRepository;
+    private readonly IAccountRepository _accountRepository = accountRepository;
 
     [HttpPost("register")]
     public async Task<IResult> Register(RegisterDto registerDto)

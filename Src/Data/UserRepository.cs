@@ -3,14 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace courses_dotnet_api.Src.Data;
 
-public class UserRepository : IUserRepository
+public class UserRepository(DataContext dataContext) : IUserRepository
 {
-    private readonly DataContext _dataContext;
-
-    public UserRepository(DataContext dataContext)
-    {
-        _dataContext = dataContext;
-    }
+    private readonly DataContext _dataContext = dataContext;
 
     public async Task<bool> UserExistsByEmailAsync(string email)
     {
